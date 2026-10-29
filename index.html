@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#b5121b">
+<title>BBN | Barumchhara Blood Network</title>
+<style>
+:root{
+  --red:#b5121b;--red2:#e32630;--green:#08783e;
+  --pale:#fff5f5;--bg:#f5f7f6;--ink:#242b28;
+  --muted:#68736d;--line:#e7eae8;--white:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+#splash{position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:24px;
+  background:linear-gradient(160deg,#fff 5%,#fff7f7 60%,#e9f7ef)}
+.splash-inner{width:100%;max-width:360px}
+.logo{width:145px;height:145px;object-fit:contain;
+  display:block;margin:0 auto 18px}
+.logo-fallback{width:145px;height:145px;margin:0 auto 18px;
+  border-radius:50%;border:5px solid var(--red);background:white;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);font-size:35px;font-weight:900}
+.brand{color:var(--red);font-size:22px;font-weight:850;line-height:1.35}
+.subbrand{font-size:14px;font-weight:700;color:var(--green);margin-top:3px}
+.slogan{font-size:15px;color:#35473b;line-height:1.8;margin:16px 0 25px}
+.spinner{width:34px;height:34px;border:4px solid #f1c9ca;
+  border-top-color:var(--red);border-right-color:var(--green);
+  border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 9px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:12px;color:var(--muted)}
+.credit{margin-top:20px;color:#59665e;font-size:11px;letter-spacing:.7px}
+#app{max-width:520px;min-height:100vh;margin:auto;background:var(--bg);
+  padding-bottom:84px}
+.topbar{height:65px;background:var(--red);color:white;
+  display:flex;align-items:center;gap:12px;padding:0 16px;
+  position:sticky;top:0;z-index:20;box-shadow:0 2px 8px #0001}
+.icon-btn{border:0;background:transparent;color:inherit;
+  font-size:24px;padding:5px;min-width:30px}
+.top-title{flex:1;text-align:center;font-weight:800;font-size:16px;line-height:1.25}
+.top-title small{display:block;font-size:10px;font-weight:500;opacity:.9}
+main{padding:14px}
+.page{display:none}.page.active{display:block}
+.hero{border-radius:18px;padding:19px 16px;margin-bottom:15px;
+  background:linear-gradient(120deg,#fff 0%,#fff0f0 65%,#e7f7ed);
+  border:1px solid #f2dddd;display:flex;align-items:center;gap:12px}
+.hero-drop{font-size:40px;flex-shrink:0}
+.hero h2{margin:0 0 5px;color:var(--red);font-size:19px}
+.hero p{margin:0;font-size:12px;line-height:1.6}
+.card{background:white;border:1px solid var(--line);border-radius:14px;
+  padding:15px;margin-bottom:12px;box-shadow:0 2px 8px #182b2010}
+.card h3{font-size:16px;margin:0 0 10px}
+.section-head{display:flex;align-items:center;justify-content:space-between;
+  margin:19px 2px 10px;font-weight:800}
+.section-head button{border:0;background:transparent;color:var(--red);font-size:12px}
+.shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.shortcut{min-height:95px;border:0;border-radius:14px;padding:14px 10px;
+  text-align:left;color:white;font-weight:750;display:flex;flex-direction:column;
+  justify-content:center;gap:7px;box-shadow:0 3px 8px #0000000d}
+.shortcut span:first-child{font-size:24px}
+.shortcut small{font-size:11px;font-weight:500;opacity:.95}
+.red{background:linear-gradient(135deg,#c91b25,#a90e17)}
+.green{background:linear-gradient(135deg,#159656,#08713a)}
+.soft{background:#fff0f0;color:var(--red);border:1px solid #f5d5d5}
+.green-soft{background:#e9f7ef;color:var(--green);border:1px solid #cdebd8}
+.blue{background:#eaf4ff;color:#205b91;border:1px solid #d7e9fc}
+.muted{color:var(--muted);font-size:12px;line-height:1.7}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}
+input,select,textarea{width:100%;border:1px solid #dfe4e0;border-radius:10px;
+  padding:12px;background:#fff;color:var(--ink);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--red);
+  box-shadow:0 0 0 3px #b5121b12}
+textarea{min-height:80px;resize:vertical}
+.btn{width:100%;border:0;border-radius:10px;background:var(--red);
+  color:white;font-weight:800;padding:13px;margin-top:15px}
+.btn.green-btn{background:var(--green)}
+.btn.outline{background:white;color:var(--red);border:1px solid var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.blood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.blood-chip{border:1px solid #f0d2d3;background:white;color:var(--red);
+  border-radius:10px;padding:11px 2px;font-weight:800}
+.blood-chip.selected{background:var(--red);color:white}
+.donor-card{display:flex;align-items:center;gap:12px}
+.avatar{width:46px;height:46px;flex-shrink:0;border-radius:50%;
+  background:#e6f5eb;color:var(--green);display:flex;
+  align-items:center;justify-content:center;font-size:21px;font-weight:800}
+.blood-badge{background:#ffeded;color:var(--red);padding:4px 9px;
+  border-radius:7px;font-weight:850;font-size:12px;display:inline-block}
+.status{font-size:11px;color:var(--green);font-weight:700;margin-top:5px}
+.call-btn{border:0;background:var(--green);color:white;border-radius:8px;padding:8px 10px}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:520px;height:72px;z-index:30;
+  display:grid;grid-template-columns:repeat(5,1fr);background:white;
+  border-top:1px solid var(--line);padding:6px 3px max(6px,env(safe-area-inset-bottom));
+  box-shadow:0 -4px 15px #0000000a}
+.nav-item{border:0;background:white;color:#78817b;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  font-size:10px;font-weight:700}
+.nav-item .nav-icon{font-size:21px;line-height:1.2}
+.nav-item.active{color:var(--red)}
+.nav-item.active .nav-icon{transform:translateY(-1px)}
+.back-row{display:flex;align-items:center;gap:8px;margin:2px 0 12px}
+.back-row button{border:0;background:white;color:var(--red);border-radius:8px;padding:8px 12px}
+.info-line{padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.info-line:last-child{border-bottom:0}
+#drawer{position:fixed;inset:0;z-index:90;background:#0006}
+.drawer-panel{height:100%;width:min(300px,85%);background:white;padding:20px}
+.drawer-head{background:var(--red);color:white;padding:18px;border-radius:12px;margin-bottom:12px}
+.drawer-link{display:block;width:100%;text-align:left;background:white;
+  border:0;border-bottom:1px solid var(--line);padding:14px 5px;color:var(--ink)}
+.notice{background:#fff8e7;border:1px solid #f1e1b6;color:#765819;
+  border-radius:10px;padding:12px;font-size:12px;line-height:1.7}
+.footer{margin:22px 2px 0;text-align:center;color:var(--muted);font-size:10px;line-height:1.8}
+.footer strong{color:var(--red)}
+.empty{text-align:center;padding:22px 10px;color:var(--muted);font-size:13px}
+@media(min-width:600px){body{padding:12px 0}#app{border-radius:20px;overflow:hidden;box-shadow:0 8px 35px #0001}.bottom-nav{bottom:12px;border-radius:14px}.topbar{position:relative}}
+</style>
+</head>
+<body>
+
+<section id="splash">
+  <div class="splash-inner">
+    <img class="logo" id="splashLogo" src="images/bbn-logo.png"
+      alt="BBN Official Logo" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
+    <div class="logo-fallback" id="logoFallback" style="display:none">BBN</div>
+    <div class="brand">BARUMCHHARA<br>BLOOD NETWORK</div>
+    <div class="subbrand">(BBN) · EST. 2026</div>
+    <div class="slogan">“আমার রক্ত তোমার তরে,<br>বাঁচুক জীবন নতুন করে।”</div>
+    <div class="spinner"></div>
+    <div class="loading-text">লোড হচ্ছে...</div>
+    <div class="credit">DEVELOPED BY <strong>MOHAMMAD MINHAZ</strong></div>
+  </div>
+</section>
+
+<div id="app" class="hidden">
+  <header class="topbar">
+    <button class="icon-btn" aria-label="মেনু" onclick="openDrawer()">☰</button>
+    <div class="top-title" id="headerTitle">BBN<small>বারুমচড়া ব্লাড নেটওয়ার্ক</small></div>
+    <button class="icon-btn" aria-label="নোটিফিকেশন" onclick="showNotice()">♧</button>
+  </header>
+
+  <main>
+    <section class="page" id="page-home">
+      <div class="hero">
+        <div class="hero-drop">🩸</div>
+        <div><h2>রক্ত দিন, জীবন বাঁচান</h2>
+          <p>মানবতার পাশে দাঁড়াই।<br><strong>BARUMCHHARA BLOOD NETWORK</strong></p>
+        </div>
+      </div>
+      <div class="section-head">প্রয়োজনীয় সেবা</div>
+      <div class="shortcuts">
+        <button class="shortcut red" onclick="go('donors')"><span>🩸</span>রক্তদাতা খুঁজুন<small>রক্তের গ্রুপ ও এলাকা দিয়ে</small></button>
+        <button class="shortcut green" onclick="go('request')"><span>＋</span>রক্তের আবেদন<small>নতুন আবেদন তৈরি করুন</small></button>
+        <button class="shortcut soft" onclick="go('feed')"><span>▤</span>ব্লাড ফিড<small>প্রকাশিত আবেদন দেখুন</small></button>
+        <button class="shortcut green-soft" onclick="go('profile')"><span>♙</span>আমার প্রোফাইল<small>নিজের তথ্য দেখুন</small></button>
+        <button class="shortcut soft" onclick="go('guidelines')"><span>♡</span>রক্ত নির্দেশিকা<small>নিয়ম ও সতর্কতা</small></button>
+        <button class="shortcut green-soft" onclick="go('history')"><span>▣</span>রক্তদানের ইতিহাস<small>শেষ রক্তদানের তারিখ</small></button>
+        <button class="shortcut soft" onclick="go('activities')"><span>✦</span>সংগঠনের কার্যক্রম<small>পরবর্তী ধাপে যোগ হবে</small></button>
+        <button class="shortcut green-soft" onclick="go('area')"><span>⌖</span>এলাকা ও যোগাযোগ<small>যোগাযোগের তথ্য</small></button>
+      </div>
+      <div class="section-head">সাম্প্রতিক রক্তের আবেদন <button onclick="go('feed')">সব দেখুন →</button></div>
+      <div id="homeRequests"></div>
+      <div class="footer">একটি রক্ত, বাঁচাতে পারে অনেক জীবন<br><strong>BARUMCHHARA BLOOD NETWORK (BBN)</strong></div>
+    </section>
+
+    <section class="page" id="page-register">
+      <div class="card" style="text-align:center">
+        <div class="brand">সদস্য নিবন্ধন</div>
+        <p class="muted">BBN-এর সদস্য হতে নিচের তথ্যগুলো পূরণ করুন।</p>
+      </div>
+      <form class="card" id="registerForm">
+        <label for="regName">১. পূর্ণ নাম *</label>
+        <input id="regName" required maxlength="80" placeholder="আপনার নাম">
+        <label for="regPhone">২. মোবাইল নম্বর *</label>
+        <input id="regPhone" required inputmode="tel" maxlength="20" placeholder="01XXXXXXXXX">
+        <label for="regBlood">৩. রক্তের গ্রুপ *</label>
+        <select id="regBlood" required>
+          <option value="">রক্তের গ্রুপ নির্বাচন করুন</option>
+          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+          <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+        </select>
+        <label for="regDistrict">৪. জেলা *</label>
+        <input id="regDistrict" required placeholder="জেলার নাম">
+        <label for="regUpazila">৫. উপজেলা *</label>
+        <input id="regUpazila" required placeholder="উপজেলার নাম">
+        <label for="regVillage">৬. গ্রাম / এলাকা</label>
+        <input id="regVillage" placeholder="গ্রাম বা এলাকার নাম">
+        <label>৭. আপনি কি আগে কখনো রক্তদান করেছেন? *</label>
+        <div class="grid2">
+          <label style="font-weight:500"><input type="radio" name="donated" value="হ্যাঁ" required style="width:auto"> হ্যাঁ</label>
+          <label style="font-weight:500"><input type="radio" name="donated" value="না" required style="width:auto"> না</label>
+        </div>
+        <div class="notice" style="margin-top:12px">এই সংস্করণে নিবন্ধনের তথ্য শুধু এই ডিভাইসের ব্রাউজারে ডেমো হিসেবে রাখা হবে। ফোন নম্বরের OTP যাচাই ও নিরাপদ অনলাইন নিবন্ধন পরে যুক্ত করতে হবে।</div>
+        <button class="btn" type="submit">নিবন্ধন করুন</button>
+      </form>
+    </section>
+
+    <section class="page" id="page-donors">
+      <div class="section-head">রক্তদাতা খুঁজুন</div>
+      <div class="card">
+        <label for="donorSearch">নাম বা মোবাইলের শেষ সংখ্যা</label>
+        <input id="donorSearch" placeholder="খুঁজতে লিখুন..." oninput="renderDonors()">
+        <label>রক্তের গ্রুপ নির্বাচন করুন</label>
+        <div class="blood-grid" id="bloodFilters"></div>
+        <label for="donorDistrict">জেলা</label>
+        <input id="donorDistrict" placeholder="জেলার নাম">
+        <label for="donorUpazila">উপজেলা</label>
+        <input id="donorUpazila" placeholder="উপজেলার নাম">
+        <button class="btn" onclick="renderDonors()">⌕ খুঁজুন</button>
+        <button class="btn outline" onclick="clearDonorFilters()">ফিল্টার মুছুন</button>
+      </div>
+      <div id="donorResults"></div>
+      <div class="notice">এখন এই ডেমোতে শুধু এই ডিভাইসে নিবন্ধিত সদস্যের তথ্য দেখা যেতে পারে। সব সদস্যের তালিকা পেতে পরে কেন্দ্রীয় ডেটাবেস লাগবে।</div>
+    </section>
+
+    <section class="page" id="page-request">
+      <div class="section-head">রক্তের আবেদন</div>
+      <form class="card" id="requestForm">
+        <label for="patientName">১. রোগীর নাম *</label><input id="patientName" required>
+        <label for="reqDistrict">২. জেলা *</label><input id="reqDistrict" required>
+        <label for="reqUpazila">৩. উপজেলা *</label><input id="reqUpazila" required>
+        <label for="reqBlood">৪. রক্তের গ্রুপ *</label>
+        <select id="reqBlood" required>
+          <option value="">নির্বাচন করুন</option>
+          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+          <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+        </select>
+        <label for="reqPhone">৫. যোগাযোগের মোবাইল নম্বর *</label><input id="reqPhone" required inputmode="tel" placeholder="01XXXXXXXXX">
+        <label for="reqBags">৬. কত ব্যাগ রক্ত লাগবে? *</label><input id="reqBags" type="number" min="1" max="20" required>
+        <label for="reqReason">৭. রোগীর সমস্যা / কারণ *</label><textarea id="reqReason" required></textarea>
+        <label for="reqHospital">৮. হাসপাতাল / মেডিকেল সেন্টার *</label><input id="reqHospital" required>
+        <div class="grid2">
+          <div><label for="reqDate">৯. তারিখ *</label><input id="reqDate" type="date" required></div>
+          <div><label for="reqTime">সময় *</label><input id="reqTime" type="time" required></div>
+        </div>
+        <label style="font-weight:500"><input type="checkbox" id="urgent" style="width:auto"> জরুরি আবেদন</label>
+        <div class="notice">আবেদন প্রকাশ করার আগে নিশ্চিত করুন যে রোগীর যোগাযোগ নম্বর প্রকাশে সম্মতি আছে। এই ডেমোতে আবেদন শুধু এই ডিভাইসে দেখা যাবে।</div>
+        <button class="btn" type="submit">আবেদন প্রকাশ করুন</button>
+      </form>
+    </section>
+
+    <section class="page" id="page-feed">
+      <div class="section-head">ব্লাড ফিড</div>
+      <div id="feedRequests"></div>
+    </section>
+
+    <section class="page" id="page-profile">
+      <div class="card" style="text-align:center">
+        <div class="avatar" style="width:76px;height:76px;margin:0 auto 12px;font-size:30px">♙</div>
+        <h2 id="profileName" style="margin:0 0 8px">সদস্য প্রোফাইল</h2>
+        <span class="blood-badge" id="profileBlood">রক্তের গ্রুপ</span>
+        <div class="status">● BBN সদস্য</div>
+      </div>
+      <div class="card" id="profileDetails"></div>
+      <div class="card">
+        <button class="drawer-link" onclick="go('history')">🩸 রক্তদানের ইতিহাস ও পরবর্তী তারিখ →</button>
+        <button class="drawer-link" onclick="go('request')">＋ আমার নতুন রক্তের আবেদন →</button>
+        <button class="drawer-link" onclick="editProfile()">✎ প্রোফাইল সম্পাদনা →</button>
+        <button class="drawer-link" onclick="logoutDemo()" style="color:var(--red)">↪ এই ডিভাইস থেকে বের হোন</button>
+      </div>
+    </section>
+
+    <section class="page" id="page-guidelines">
+      <div class="section-head">রক্ত নির্দেশিকা</div>
+      <div class="card">
+        <h3>রক্তদানের আগে</h3>
+        <div class="info-line">• সুস্থ বোধ করুন এবং পর্যাপ্ত ঘুমান।</div>
+        <div class="info-line">• স্বাভাবিক খাবার খান ও পর্যাপ্ত পানি পান করুন।</div>
+        <div class="info-line">• নিজের অসুস্থতা, ওষুধ ও পূর্বের রক্তদানের তথ্য স্বাস্থ্যকর্মীকে জানান।</div>
+      </div>
+      <div class="card">
+        <h3>রক্তদানের যোগ্যতা</h3>
+        <p class="muted">বয়স, ওজন, হিমোগ্লোবিন, স্বাস্থ্যাবস্থা ও রক্তদানের মধ্যবর্তী সময়ের শর্ত দেশ ও রক্তকেন্দ্রভেদে ভিন্ন হতে পারে। রক্তকেন্দ্রের স্বাস্থ্যকর্মীই চূড়ান্ত যোগ্যতা নির্ধারণ করবেন।</p>
+        <div class="info-line">• জ্বর, সংক্রমণ বা অসুস্থতা থাকলে আগে স্বাস্থ্যকর্মীর পরামর্শ নিন।</div>
+        <div class="info-line">• গর্ভাবস্থা, কিছু রোগ বা নির্দিষ্ট ওষুধের ক্ষেত্রে রক্তদান স্থগিত থাকতে পারে।</div>
+      </div>
+      <div class="card">
+        <h3>রক্তদানের পরে</h3>
+        <div class="info-line">• কিছুক্ষণ বিশ্রাম নিন এবং পানি পান করুন।</div>
+        <div class="info-line">• সেদিন ভারী কাজ বা কঠিন ব্যায়াম এড়িয়ে চলুন।</div>
+        <div class="info-line">• মাথা ঘুরলে বসে বা শুয়ে পড়ুন এবং রক্তকেন্দ্রের কর্মীদের জানান।</div>
+      </div>
+      <div class="notice">পরবর্তী রক্তদানের তারিখ রক্তকেন্দ্রের নির্দেশনা অনুযায়ী নির্ধারণ করুন। অ্যাপের এই নির্দেশিকা চিকিৎসকের পরামর্শের বিকল্প নয়।</div>
+    </section>
+
+    <section class="page" id="page-history">
+      <div class="section-head">রক্তদানের ইতিহাস</div>
+      <div class="card">
+        <label for="lastDonation">শেষ কবে রক্ত দিয়েছেন?</label>
+        <input id="lastDonation" type="date">
+        <label for="nextDonation">পরবর্তী সম্ভাব্য তারিখ (রক্তকেন্দ্রের পরামর্শ অনুযায়ী)</label>
+        <input id="nextDonation" type="date">
+        <button class="btn green-btn" onclick="saveHistory()">তারিখ সংরক্ষণ করুন</button>
+        <div id="historyStatus" class="muted" style="margin-top:10px"></div>
+      </div>
+      <div class="notice">পরবর্তী তারিখটি কেবল নিজের রেকর্ড রাখার জন্য। প্রকৃত যোগ্যতার জন্য রক্তকেন্দ্রের পরামর্শ নিন।</div>
+    </section>
+
+    <section class="page" id="page-activities">
+      <div class="section-head">সংগঠনের কার্যক্রম</div>
+      <div class="card"><p class="muted">BARUMCHHARA BLOOD NETWORK-এর কার্যক্রমের তথ্য এখানে পরে যোগ করা হবে।</p></div>
+    </section>
+
+    <section class="page" id="page-area">
+      <div class="section-head">এলাকা ও যোগাযোগ</div>
+      <div class="card">
+        <div class="info-line"><strong>সংগঠন:</strong> BARUMCHHARA BLOOD NETWORK (BBN)</div>
+        <div class="info-line"><strong>এলাকা:</strong> বরুমচড়া, আনোয়ারা, চট্টগ্রাম, বাংলাদেশ</div>
+        <div class="info-line"><strong>ডেভেলপার:</strong> MOHAMMAD MINHAZ</div>
+        <p class="muted">অফিসিয়াল যোগাযোগের তথ্য নিশ্চিত হলে এখানে যোগ করা হবে।</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="প্রধান নেভিগেশন">
+    <button class="nav-item active" data-page="home" onclick="go('home')"><span class="nav-icon">⌂</span>হোম</button>
+    <button class="nav-item" data-page="donors" onclick="go('donors')"><span class="nav-icon">♙</span>রক্তদাতা</button>
+    <button class="nav-item" data-page="request" onclick="go('request')"><span class="nav-icon">▤</span>আবেদন</button>
+    <button class="nav-item" data-page="feed" onclick="go('feed')"><span class="nav-icon">⚑</span>ব্লাড ফিড</button>
+    <button class="nav-item" data-page="profile" onclick="go('profile')"><span class="nav-icon">●</span>প্রোফাইল</button>
+  </nav>
+</div>
+
+<div id="drawer" class="hidden" onclick="closeDrawer(event)">
+  <aside class="drawer-panel">
+    <div class="drawer-head"><strong>BBN · 2026</strong><br><small>বারুমচড়া ব্লাড নেটওয়ার্ক</small></div>
+    <button class="drawer-link" onclick="drawerGo('guidelines')">♡ রক্ত নির্দেশিকা</button>
+    <button class="drawer-link" onclick="drawerGo('history')">▣ রক্তদানের ইতিহাস</button>
+    <button class="drawer-link" onclick="drawerGo('activities')">✦ সংগঠনের কার্যক্রম</button>
+    <button class="drawer-link" onclick="drawerGo('area')">⌖ এলাকা ও যোগাযোগ</button>
+    <button class="drawer-link" onclick="drawerGo('profile')">♙ আমার প্রোফাইল</button>
+    <p class="footer">DEVELOPED BY<br><strong>MOHAMMAD MINHAZ</strong></p>
+    <button class="btn outline" onclick="closeDrawer()">বন্ধ করুন</button>
+  </aside>
+</div>
+
+<script>
+const KEY_MEMBER="bbn_demo_member_v1";
+const KEY_REQUESTS="bbn_demo_requests_v1";
+const KEY_HISTORY="bbn_demo_history_v1";
+const bloodTypes=["A+","A-","B+","B-","AB+","AB-","O+","O-"];
+let selectedBlood="";
+let member=null;
+let requests=[];
+
+function read(key,fallback){
+  try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}
+  catch(e){return fallback}
+}
+function save(key,value){localStorage.setItem(key,JSON.stringify(value))}
+function esc(value){
+  return String(value??"").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function init(){
+  member=read(KEY_MEMBER,null);
+  requests=read(KEY_REQUESTS,[]);
+  setTimeout(()=>{
+    document.getElementById("splash").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+    if(member){go("home")}else{go("register")}
+    renderBloodFilters();renderHomeRequests();renderFeed();renderDonors();refreshProfile();
+  },1800);
+}
+function go(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const target=document.getElementById("page-"+page);
+  if(!target)return;
+  target.classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(b=>{
+    b.classList.toggle("active",b.dataset.page===page);
+  });
+  const titles={home:"BBN",register:"সদস্য নিবন্ধন",donors:"রক্তদাতা খুঁজুন",
+    request:"রক্তের আবেদন",feed:"ব্লাড ফিড",profile:"আমার প্রোফাইল",
+    guidelines:"রক্ত নির্দেশিকা",history:"রক্তদানের ইতিহাস",
+    activities:"সংগঠনের কার্যক্রম",area:"এলাকা ও যোগাযোগ"};
+  document.getElementById("headerTitle").innerHTML=
+    esc(titles[page]||"BBN")+"<small>বারুমচড়া ব্লাড নেটওয়ার্ক</small>";
+  closeDrawer();
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(page==="donors")renderDonors();
+  if(page==="feed")renderFeed();
+  if(page==="profile")refreshProfile();
+}
+function openDrawer(){document.getElementById("drawer").classList.remove("hidden")}
+function closeDrawer(event){
+  if(event && event.target!==document.getElementById("drawer"))return;
+  document.getElementById("drawer").classList.add("hidden");
+}
+function drawerGo(page){go(page)}
+function showNotice(){alert("নতুন নোটিফিকেশন ফিচার পরবর্তী ধাপে যুক্ত হবে।")}
+document.getElementById("registerForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const donated=document.querySelector('input[name="donated"]:checked');
+  member={
+    name:document.getElementById("regName").value.trim(),
+    phone:document.getElementById("regPhone").value.trim(),
+    blood:document.getElementById("regBlood").value,
+    district:document.getElementById("regDistrict").value.trim(),
+    upazila:document.getElementById("regUpazila").value.trim(),
+    village:document.getElementById("regVillage").value.trim(),
+    donated:donated?donated.value:"না"
+  };
+  if(!member.name||!member.phone||!member.blood||!member.district||!member.upazila){
+    alert("অনুগ্রহ করে সব আবশ্যক তথ্য পূরণ করুন।");return;
+  }
+  save(KEY_MEMBER,member);
+  refreshProfile();renderDonors();go("home");
+  alert("এই ডিভাইসে ডেমো প্রোফাইল তৈরি হয়েছে। এটি এখনো অনলাইন নিবন্ধন নয়।");
+});
+function renderBloodFilters(){
+  const box=document.getElementById("bloodFilters");
+  box.innerHTML=bloodTypes.map(b=>`<button class="blood-chip ${selectedBlood===b?"selected":""}" onclick="pickBlood('${b}')">${b}</button>`).join("");
+}
+function pickBlood(b){selectedBlood=selectedBlood===b?"":b;renderBloodFilters();renderDonors()}
+function clearDonorFilters(){
+  selectedBlood="";
+  document.getElementById("donorSearch").value="";
+  document.getElementById("donorDistrict").value="";
+  document.getElementById("donorUpazila").value="";
+  renderBloodFilters();renderDonors();
+}
+function renderDonors(){
+  const box=document.getElementById("donorResults");if(!box)return;
+  const q=(document.getElementById("donorSearch")?.value||"").toLowerCase().trim();
+  const district=(document.getElementById("donorDistrict")?.value||"").toLowerCase().trim();
+  const upazila=(document.getElementById("donorUpazila")?.value||"").toLowerCase().trim();
+  const people=member?[member]:[];
+  const found=people.filter(p=>
+    (!selectedBlood||p.blood===selectedBlood)&&
+    (!district||p.district.toLowerCase().includes(district))&&
+    (!upazila||p.upazila.toLowerCase().includes(upazila))&&
+    (!q||p.name.toLowerCase().includes(q)||p.phone.includes(q))
+  );
+  if(!found.length){box.innerHTML='<div class="card empty">মিল পাওয়া যায়নি।<br>এই ডেমোতে এখনো কোনো সদস্যের তালিকা নেই।</div>';return}
+  box.innerHTML=found.map(p=>`<div class="card donor-card">
+    <div class="avatar">${esc(p.name.slice(0,1))}</div>
+    <div style="flex:1;min-width:0"><strong>${esc(p.name)}</strong><br>
+    <span class="blood-badge">${esc(p.blood)}</span>
+    <div class="muted">⌖ ${esc(p.upazila)}, ${esc(p.district)}</div>
+    <div class="status">নিজের ডিভাইসের ডেমো প্রোফাইল</div></div>
+    <button class="call-btn" onclick="callNumber('${esc(p.phone)}')">কল</button>
+  </div>`).join("");
+}
+function callNumber(phone){
+  if(!confirm("এই নম্বরে কল করার জন্য ফোন অ্যাপ খুলবেন?"))return;
+  window.location.href="tel:"+phone.replace(/[^\d+]/g,"");
+}
+document.getElementById("requestForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const req={
+    id:Date.now(),patient:document.getElementById("patientName").value.trim(),
+    district:document.getElementById("reqDistrict").value.trim(),
+    upazila:document.getElementById("reqUpazila").value.trim(),
+    blood:document.getElementById("reqBlood").value,
+    phone:document.getElementById("reqPhone").value.trim(),
+    bags:document.getElementById("reqBags").value,
+    reason:document.getElementById("reqReason").value.trim(),
+    hospital:document.getElementById("reqHospital").value.trim(),
+    date:document.getElementById("reqDate").value,
+    time:document.getElementById("reqTime").value,
+    urgent:document.getElementById("urgent").checked,closed:false
+  };
+  requests.unshift(req);save(KEY_REQUESTS,requests);
+  e.target.reset();renderFeed();renderHomeRequests();go("feed");
+  alert("আবেদনটি এই ডিভাইসে ডেমো হিসেবে সংরক্ষিত হয়েছে; অনলাইনে প্রকাশিত হয়নি।");
+});
+function requestCard(r){
+  return `<div class="card">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="blood-badge">${esc(r.blood)}</span>
+      <strong style="flex:1">${esc(r.patient)}</strong>
+      ${r.urgent?'<span class="status" style="color:var(--red)">জরুরি</span>':""}
+    </div>
+    <p class="muted">⌖ ${esc(r.upazila)}, ${esc(r.district)}<br>
+    🏥 ${esc(r.hospital)}<br>🩸 ${esc(r.bags)} ব্যাগ · ${esc(r.date)} ${esc(r.time)}</p>
+    <div class="muted">${esc(r.reason)}</div>
+    ${r.closed?'<div class="status">রক্ত পাওয়া গেছে</div>':`<button class="call-btn" style="margin-top:10px" onclick="callNumber('${esc(r.phone)}')">☎ কল করুন</button>
+    <button class="btn outline" onclick="closeRequest(${Number(r.id)})">রক্ত পাওয়া গেছে</button>`}
+  </div>`;
+}
+function renderFeed(){
+  const box=document.getElementById("feedRequests");if(!box)return;
+  box.innerHTML=requests.length?requests.map(requestCard).join(''):
+    '<div class="card empty">এখনো কোনো আবেদন নেই।<br>নতুন রক্তের আবেদন করতে নিচের “আবেদন” বাটন চাপুন।</div>';
+}
+function renderHomeRequests(){
+  const box=document.getElementById("homeRequests");if(!box)return;
+  box.innerHTML=requests.length?requests.slice(0,2).map(requestCard).join(''):
+    '<div class="card empty">এখনো কোনো সাম্প্রতিক আবেদন নেই।</div>';
+}
+function closeRequest(id){
+  requests=requests.map(r=>r.id===id?{...r,closed:true}:r);
+  save(KEY_REQUESTS,requests);renderFeed();renderHomeRequests();
+}
+function refreshProfile(){
+  if(!member)return;
+  document.getElementById("profileName").textContent=member.name;
+  document.getElementById("profileBlood").textContent=member.blood;
+  document.getElementById("profileDetails").innerHTML=`
+    <div class="info-line"><strong>মোবাইল:</strong> ${esc(member.phone)}</div>
+    <div class="info-line"><strong>জেলা:</strong> ${esc(member.district)}</div>
+    <div class="info-line"><strong>উপজেলা:</strong> ${esc(member.upazila)}</div>
+    <div class="info-line"><strong>গ্রাম/এলাকা:</strong> ${esc(member.village||"উল্লেখ করা হয়নি")}</div>
+    <div class="info-line"><strong>আগে রক্তদান:</strong> ${esc(member.donated)}</div>`;
+}
+function editProfile(){
+  if(!member){go("register");return}
+  document.getElementById("regName").value=member.name||"";
+  document.getElementById("regPhone").value=member.phone||"";
+  document.getElementById("regBlood").value=member.blood||"";
+  document.getElementById("regDistrict").value=member.district||"";
+  document.getElementById("regUpazila").value=member.upazila||"";
+  document.getElementById("regVillage").value=member.village||"";
+  const radio=document.querySelector(`input[name="donated"][value="${member.donated}"]`);
+  if(radio)radio.checked=true;
+  go("register");
+}
+function saveHistory(){
+  const data={
+    last:document.getElementById("lastDonation").value,
+    next:document.getElementById("nextDonation").value
+  };
+  save(KEY_HISTORY,data);
+  document.getElementById("historyStatus").textContent="এই ডিভাইসে তারিখ সংরক্ষণ হয়েছে।";
+}
+function loadHistory(){
+  const h=read(KEY_HISTORY,{});
+  document.getElementById("lastDonation").value=h.last||"";
+  document.getElementById("nextDonation").value=h.next||"";
+}
+function logoutDemo(){
+  if(!confirm("এই ডিভাইস থেকে ডেমো প্রোফাইল মুছবেন?"))return;
+  localStorage.removeItem(KEY_MEMBER);member=null;
+  go("register");
+}
+loadHistory();
+init();
+</script>
+</body>
+  </html>
