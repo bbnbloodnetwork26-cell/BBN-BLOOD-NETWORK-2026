@@ -187,6 +187,24 @@ textarea{min-height:80px;resize:vertical}
 .blog-post img{width:100%;max-height:260px;object-fit:cover;border-radius:12px;margin-bottom:12px}
 .blog-post h3{margin:7px 0;font-size:17px}
 .blog-post p{font-size:13px;line-height:1.8;white-space:normal}
+/* Premium visual refinement */
+.logo{width:148px;height:148px;animation:none!important;transform:none!important;filter:none!important;box-shadow:none!important;border:3px solid #ffffffd9;background:#fff;padding:5px}
+.splash-inner{box-shadow:none!important}
+#splash:before,#splash:after{animation:none!important}
+.splash-glow{animation:none!important;opacity:.45}
+.shortcut span:first-child,.nav-icon,.ui-icon{display:inline-flex;align-items:center;justify-content:center}
+.shortcut span:first-child{font-size:0;width:30px;height:30px;margin-bottom:2px}
+.shortcut span:first-child svg,.nav-icon svg,.ui-icon svg{width:22px;height:22px;display:block}
+.shortcut{border:1px solid #ffffff28;position:relative;overflow:hidden}
+.shortcut:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#ffffff14,transparent 55%);pointer-events:none}
+.nav-item{gap:4px}.nav-icon{width:26px;height:25px;font-size:0}
+.drawer-register{display:flex;align-items:center;gap:10px}
+.drawer-register .ui-icon svg{width:19px;height:19px}
+.drawer-link .ui-icon{width:22px;flex:0 0 22px;color:var(--red)}
+.drawer-link .ui-icon svg{width:19px;height:19px}
+.drawer-welcome{min-height:190px!important;align-items:flex-end!important;justify-content:flex-start!important;padding:18px!important;color:#fff!important;border:1px solid #ffffff70!important;background:linear-gradient(0deg,rgba(46,4,12,.86),rgba(65,5,15,.12) 80%),url("https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=900&q=85") center/cover!important;text-shadow:0 2px 12px #24040a!important;font-size:15px!important;font-weight:850!important;box-shadow:0 10px 24px #7c101a22!important}
+.blog-upload{display:flex;align-items:center;justify-content:center;gap:9px;padding:14px;border:1.5px dashed #dbaeb2;border-radius:12px;background:linear-gradient(135deg,#fff7f7,#f0faf4);color:var(--red);font-weight:800;cursor:pointer}
+.blog-upload input{display:none}.blog-preview{display:none;width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin-top:10px;border:1px solid var(--line)}.blog-preview.visible{display:block}
 @media(min-width:600px){body{padding:12px 0}#app{border-radius:20px;overflow:hidden;box-shadow:0 8px 35px #0001}
 .bottom-nav{bottom:12px;border-radius:14px}.topbar{position:relative}}
 @media(max-width:380px){.hero-banner h2{font-size:20px}.hero-photo{width:63px;height:85px}.hero-photo.second{width:55px;height:68px}.hero-content{max-width:245px}}
@@ -241,13 +259,13 @@ textarea{min-height:80px;resize:vertical}
       </div>
       <div class="section-head">প্রয়োজনীয় সেবা</div>
       <div class="shortcuts">
-        <button class="shortcut red" onclick="go('donors')"><span>🩸</span>রক্তদাতা খুঁজুন<small>রক্তের গ্রুপ ও এলাকা দিয়ে</small></button>
+        <button class="shortcut red" onclick="go('donors')"><span><path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/><path d="M9 14h6M12 11v6"/></span>রক্তদাতা খুঁজুন<small>রক্তের গ্রুপ ও এলাকা দিয়ে</small></button>
         <button class="shortcut green" onclick="go('request')"><span>＋</span>রক্তের আবেদন<small>নতুন আবেদন তৈরি করুন</small></button>
         <button class="shortcut soft" onclick="go('feed')"><span>▤</span>ব্লাড ফিড<small>প্রকাশিত আবেদন দেখুন</small></button>
         <button class="shortcut soft" onclick="go('guidelines')"><span>♡</span>রক্ত নির্দেশিকা<small>নিয়ম ও সতর্কতা</small></button>
         <button class="shortcut green-soft" onclick="go('history')"><span>▣</span>রক্তদানের ইতিহাস<small>শেষ রক্তদানের তারিখ</small></button>
         <button class="shortcut soft" onclick="go('activities')"><span>✦</span>সংগঠনের কার্যক্রম<small>সংগঠনের আপডেট</small></button>
-        <button class="shortcut green-soft" onclick="go('learn-donation')"><span>🩸</span>রক্তদান: জানুন, সচেতন হোন<small>রক্তদান সম্পর্কে পড়ুন</small></button>
+        <button class="shortcut green-soft" onclick="go('learn-donation')"><span><path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/><path d="M9 14h6M12 11v6"/></span>রক্তদান: জানুন, সচেতন হোন<small>রক্তদান সম্পর্কে পড়ুন</small></button>
         <button class="shortcut blue" onclick="go('blog')"><span>✍️</span>ব্লগ<small>রক্তদানের গল্প ও ছবি শেয়ার করুন</small></button>
       </div>
       <div class="section-head">সাম্প্রতিক রক্তের আবেদন <button onclick="go('feed')">সব দেখুন →</button></div>
@@ -388,7 +406,9 @@ textarea{min-height:80px;resize:vertical}
       <div class="card"><h3>আপনার রক্তদানের গল্প শেয়ার করুন</h3><p class="muted">রক্তদানের অভিজ্ঞতা, সচেতনতামূলক লেখা বা ছবি দিয়ে পোস্ট তৈরি করুন।</p>
         <form id="blogForm"><label for="blogTitle">পোস্টের শিরোনাম</label><input id="blogTitle" maxlength="100" required placeholder="আপনার পোস্টের শিরোনাম লিখুন">
         <label for="blogText">আপনার লেখা</label><textarea id="blogText" required maxlength="2000" placeholder="রক্তদানের গল্প বা সচেতনতামূলক বার্তা লিখুন..."></textarea>
-        <label for="blogImage">ছবির লিংক (ঐচ্ছিক)</label><input id="blogImage" type="url" placeholder="https://..."><button class="btn" type="submit">✍️ পোস্ট প্রকাশ করুন</button></form></div>
+        <label>ছবি যোগ করুন (ঐচ্ছিক)</label>
+        <label class="blog-upload" for="blogImage"><span class="ui-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg></span> গ্যালারি থেকে ছবি বেছে নিন<input id="blogImage" type="file" accept="image/*"></label><img id="blogPreview" class="blog-preview" alt="নির্বাচিত ছবির প্রিভিউ">
+        <button class="btn" type="submit">পোস্ট প্রকাশ করুন</button></form></div>
       <div id="blogPosts"></div><div class="notice">এই সংস্করণে পোস্ট এই ডিভাইসের ব্রাউজারে ডেমো হিসেবে সংরক্ষিত হবে। সবার পোস্ট একসঙ্গে দেখাতে ও নিরাপদে প্রকাশ করতে কেন্দ্রীয় ডেটাবেস এবং অনুমতি ব্যবস্থা প্রয়োজন।</div>
     </section>
 
@@ -422,11 +442,11 @@ textarea{min-height:80px;resize:vertical}
   </main>
 
   <nav class="bottom-nav" aria-label="প্রধান নেভিগেশন">
-    <button class="nav-item active" data-page="home" onclick="go('home')"><span class="nav-icon">⌂</span>হোম</button>
-    <button class="nav-item" data-page="donors" onclick="go('donors')"><span class="nav-icon">♙</span>রক্তদাতা</button>
-    <button class="nav-item" data-page="request" onclick="go('request')"><span class="nav-icon">▤</span>আবেদন</button>
-    <button class="nav-item" data-page="feed" onclick="go('feed')"><span class="nav-icon">⚑</span>ব্লাড ফিড</button>
-    <button class="nav-item" data-page="profile" onclick="go('profile')"><span class="nav-icon">●</span>প্রোফাইল</button>
+    <button class="nav-item active" data-page="home" onclick="go('home')"><span class="nav-icon"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span></span>হোম</button>
+    <button class="nav-item" data-page="donors" onclick="go('donors')"><span class="nav-icon"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2z"/></svg></span></span>রক্তদাতা</button>
+    <button class="nav-item" data-page="request" onclick="go('request')"><span class="nav-icon"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 4v14H4V3z"/><path d="M8 12h8M8 16h8M8 8h3"/></svg></span></span>আবেদন</button>
+    <button class="nav-item" data-page="feed" onclick="go('feed')"><span class="nav-icon"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span></span>ব্লাড ফিড</button>
+    <button class="nav-item" data-page="profile" onclick="go('profile')"><span class="nav-icon"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2z"/></svg></span></span>প্রোফাইল</button>
   </nav>
 </div>
 
@@ -434,8 +454,8 @@ textarea{min-height:80px;resize:vertical}
   <aside class="drawer-panel">
     <div class="drawer-head"><strong>BBN · 2026</strong><br><small>বারুমচড়া ব্লাড নেটওয়ার্ক</small></div>
     <div class="drawer-welcome">আজই BBN পরিবারের সদস্য হোন, অন্যের জীবন বাঁচাতে এগিয়ে আসুন।</div>
-    <button class="drawer-register" onclick="drawerGo('register')">＋ সদস্য হিসেবে নিবন্ধন করুন</button>
-    <button class="drawer-register donor" onclick="drawerGo('donor-register')">🩸 রক্তদাতা হিসেবে নিবন্ধন করুন</button>
+    <button class="drawer-register" onclick="drawerGo('register')"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 14a4 4 0 0 1 3 4v2"/></svg></span> সদস্য হিসেবে নিবন্ধন করুন</button>
+    <button class="drawer-register donor" onclick="drawerGo('donor-register')"><span class="ui-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/><path d="M9 14h6M12 11v6"/></svg></span> রক্তদাতা হিসেবে নিবন্ধন করুন</button>
     <div class="drawer-label">অ্যাকাউন্ট</div>
     <button class="drawer-link" onclick="drawerGo('login')">↪ সদস্য লগইন</button>
     <button class="drawer-link" onclick="logoutDemo()">⇥ লগআউট</button>
@@ -469,6 +489,26 @@ function read(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.
 function save(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){alert("ডিভাইসে তথ্য সংরক্ষণ করা যায়নি।")}}
 function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function bn(n){return String(n).replace(/[0-9]/g,d=>"০১২৩৪৫৬৭৮৯"[Number(d)])}
+
+let blogImageData="";
+function compressBlogImage(file){
+ return new Promise((resolve,reject)=>{
+  if(!file||!file.type.startsWith("image/")){reject(new Error("ছবি নির্বাচন করুন"));return}
+  if(file.size>12*1024*1024){reject(new Error("ছবিটি ১২ MB-এর কম নির্বাচন করুন"));return}
+  const reader=new FileReader();reader.onerror=()=>reject(new Error("ছবিটি পড়া যায়নি"));
+  reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error("ছবিটি খোলা যায়নি"));
+   img.onload=()=>{const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height));
+    const canvas=document.createElement("canvas");canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
+    canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL("image/jpeg",.78));};
+   img.src=reader.result;};reader.readAsDataURL(file);
+ });
+}
+document.getElementById("blogImage").addEventListener("change",async e=>{
+ const file=e.target.files?.[0],preview=document.getElementById("blogPreview");
+ if(!file){blogImageData="";preview.classList.remove("visible");return}
+ try{blogImageData=await compressBlogImage(file);preview.src=blogImageData;preview.classList.add("visible")}
+ catch(err){blogImageData="";e.target.value="";alert(err.message||"ছবি নির্বাচন করা যায়নি")}
+});
 
 function init(){
   member=read(KEY_MEMBER,null);donors=read(KEY_DONORS,[]);requests=read(KEY_REQUESTS,[]);
@@ -572,9 +612,14 @@ document.getElementById("requestForm").addEventListener("submit",e=>{
 });
 
 document.getElementById("blogForm").addEventListener("submit",e=>{
-  e.preventDefault();const post={id:Date.now(),title:document.getElementById("blogTitle").value.trim(),text:document.getElementById("blogText").value.trim(),image:document.getElementById("blogImage").value.trim(),date:new Date().toLocaleDateString("bn-BD")};
+  e.preventDefault();
+  const post={id:Date.now(),title:document.getElementById("blogTitle").value.trim(),
+    text:document.getElementById("blogText").value.trim(),image:blogImageData,
+    date:new Date().toLocaleDateString("bn-BD")};
   if(!post.title||!post.text){alert("শিরোনাম ও লেখা পূরণ করুন।");return}
-  blogPosts.unshift(post);save(KEY_BLOG,blogPosts);e.target.reset();renderBlog();alert("পোস্টটি এই ডিভাইসে ডেমো হিসেবে সংরক্ষিত হয়েছে; সবার কাছে প্রকাশিত হয়নি।");
+  blogPosts.unshift(post);save(KEY_BLOG,blogPosts);e.target.reset();blogImageData="";
+  const preview=document.getElementById("blogPreview");preview.removeAttribute("src");preview.classList.remove("visible");
+  renderBlog();alert("পোস্টটি এই ডিভাইসে ডেমো হিসেবে সংরক্ষিত হয়েছে; সবার কাছে প্রকাশিত করতে অনলাইন ডেটাবেস লাগবে।");
 });
 function renderBlog(){const box=document.getElementById("blogPosts");if(!box)return;box.innerHTML=blogPosts.length?blogPosts.map(p=>`<article class="card blog-post">${p.image?`<img src="${esc(p.image)}" alt="পোস্টের ছবি" onerror="this.style.display='none'">`:""}<div class="muted">BBN ব্লগ · ${esc(p.date)}</div><h3>${esc(p.title)}</h3><p>${esc(p.text).replace(/\n/g,"<br>")}</p></article>`).join(""):'<div class="card empty">এখনো কোনো ব্লগ পোস্ট নেই। প্রথম পোস্টটি আপনি তৈরি করতে পারেন।</div>'}
 
@@ -613,4 +658,4 @@ loadHistory();
 init();
 </script>
 </body>
-  </html>
+          </html>
