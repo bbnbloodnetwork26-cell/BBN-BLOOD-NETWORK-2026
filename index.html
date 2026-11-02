@@ -21,9 +21,19 @@ button{cursor:pointer}
 .hidden{display:none!important}
 #splash{position:fixed;inset:0;z-index:1000;overflow:hidden;
   display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;
-  color:#fff;background:radial-gradient(circle at 15% 18%,#e43b45 0,transparent 30%),
-  radial-gradient(circle at 88% 78%,#168653 0,transparent 29%),
-  linear-gradient(145deg,#650913 0%,#a90f1a 48%,#710b19 100%)}
+  color:#fff;background:radial-gradient(ellipse at 50% 8%,#f34b56 0%,transparent 34%),
+  radial-gradient(ellipse at 8% 88%,#0d633d 0%,transparent 31%),
+  radial-gradient(ellipse at 95% 70%,#168653 0%,transparent 25%),
+  linear-gradient(145deg,#43050d 0%,#8e0b17 42%,#570711 100%)}
+#splash:after{box-shadow:0 0 0 34px #ffffff08,0 0 0 72px #ffffff05}
+#splash:before{width:260px;height:260px;border-color:#ffffff2c;box-shadow:0 0 55px #ffb7bd12}
+.splash-inner{padding:26px 20px;border:1px solid #ffffff18;border-radius:28px;background:linear-gradient(145deg,#ffffff0c,#ffffff03);backdrop-filter:blur(5px);box-shadow:0 24px 70px #26030935}
+.logo{width:124px;height:124px;border-radius:50%;object-fit:cover;border:3px solid #ffffffd9;background:#fff;padding:5px;box-shadow:0 0 0 8px #ffffff10,0 14px 35px #24030a70,0 0 30px #ffc2c62b;animation:float 3s ease-in-out infinite}
+.brand{font-size:20px;letter-spacing:1px;text-shadow:0 3px 15px #30050b55}
+.subbrand{display:inline-block;padding:5px 12px;border:1px solid #ffffff2b;border-radius:30px;background:#ffffff0c}
+.credit{margin-top:25px;font-size:12px;line-height:1.9}
+.welcome-line{display:block;margin-top:7px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px}
+
 #splash:before,#splash:after{content:"";position:absolute;border:1px solid #ffffff20;
   border-radius:50%;width:330px;height:330px;animation:orbit 14s linear infinite}
 #splash:after{width:490px;height:490px;animation-direction:reverse;animation-duration:20s}
@@ -130,7 +140,14 @@ textarea{min-height:80px;resize:vertical}
 @keyframes slideIn{from{transform:translateX(-18px);opacity:.7}to{transform:none;opacity:1}}
 .drawer-head{position:relative;overflow:hidden;background:linear-gradient(135deg,#a90f1a,#d52a35 70%,#08783e);
   color:white;padding:20px 17px;border-radius:15px;margin-bottom:12px}
-.drawer-head:after{content:"🩸";position:absolute;right:15px;top:12px;font-size:42px;opacity:.22}
+.drawer-head:after{content:"";position:absolute;right:14px;top:12px;width:46px;height:46px;border-radius:50%;background:url("bbn-logo.png") center/cover no-repeat;border:2px solid #ffffffc9;box-shadow:0 5px 16px #45050b55}
+.drawer-head{padding:18px 16px 18px 76px;min-height:78px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 8px 20px #a90f1a22}
+.drawer-welcome{position:relative;overflow:hidden;min-height:150px;padding:18px 15px 15px;color:white;border:0;background:linear-gradient(180deg,#47071012,#4b0710d9),url("https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=700&q=85") center/cover;border-radius:15px;display:flex;align-items:flex-start;justify-content:center;font-size:15px;font-weight:850;line-height:1.7;text-shadow:0 2px 8px #260309;box-shadow:0 8px 22px #750a1420}
+.drawer-register{position:relative;padding:15px 13px;margin:10px 0;border-radius:13px;font-size:13px;box-shadow:0 7px 18px #a90f1a25;letter-spacing:.1px}
+.drawer-register:active{transform:scale(.985)}
+.drawer-link{display:flex;align-items:center;gap:10px;min-height:45px;padding:12px 10px;border-radius:9px;border-bottom:1px solid #f0eeee;font-size:13px;font-weight:650;color:#343a36}
+.drawer-link:active{background:#fff1f2;color:var(--red)}
+.drawer-label{margin:18px 5px 7px;color:#a90f1a;font-size:10px}
 .drawer-head strong{font-size:18px;letter-spacing:.4px}
 .drawer-welcome{background:#fff2f2;border:1px solid #f4d7d9;color:#8f1019;
   padding:12px;border-radius:12px;font-size:12px;line-height:1.7;font-weight:700;margin-bottom:10px}
@@ -154,6 +171,22 @@ textarea{min-height:80px;resize:vertical}
 .social-link{display:flex;align-items:center;justify-content:space-between;padding:13px 12px;
   border:1px solid var(--line);border-radius:11px;margin-top:9px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:750}
 .social-link span:last-child{color:var(--red)}
+.donation-article{padding:0;overflow:hidden}
+.donation-cover{height:190px;position:relative;overflow:hidden;background:#7d1019}
+.donation-cover img{width:100%;height:100%;object-fit:cover;filter:brightness(.68)}
+.cover-title{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;color:white;font-size:23px;font-weight:900;line-height:1.4;text-shadow:0 2px 12px #25040a}
+.article-brand{padding:17px 17px 0;color:var(--red);font-size:11px;font-weight:900;letter-spacing:.6px}
+.donation-article h2,.donation-article h3,.donation-article p,.donation-article blockquote,.donation-article .article-cta,.donation-article .notice{margin-left:17px;margin-right:17px}
+.donation-article h2{font-size:19px;line-height:1.5;margin-top:10px}
+.donation-article h3{font-size:15px;color:var(--red);margin-top:20px;margin-bottom:7px}
+.donation-article p{font-size:13px;line-height:1.9;color:#4e5852}
+.donation-article blockquote{padding:13px;border-left:3px solid var(--green);background:#eff8f2;border-radius:0 10px 10px 0;font-weight:750;line-height:1.8}
+.donation-article blockquote small{font-size:11px;color:var(--green)}
+.article-cta{padding:15px;margin-top:18px;margin-bottom:15px;background:linear-gradient(135deg,#fff0f0,#edf8f1);border-radius:12px;text-align:center;color:var(--red);font-size:13px;line-height:1.9;font-weight:800}
+.donation-article .notice{margin-bottom:17px}
+.blog-post img{width:100%;max-height:260px;object-fit:cover;border-radius:12px;margin-bottom:12px}
+.blog-post h3{margin:7px 0;font-size:17px}
+.blog-post p{font-size:13px;line-height:1.8;white-space:normal}
 @media(min-width:600px){body{padding:12px 0}#app{border-radius:20px;overflow:hidden;box-shadow:0 8px 35px #0001}
 .bottom-nav{bottom:12px;border-radius:14px}.topbar{position:relative}}
 @media(max-width:380px){.hero-banner h2{font-size:20px}.hero-photo{width:63px;height:85px}.hero-photo.second{width:55px;height:68px}.hero-content{max-width:245px}}
@@ -164,15 +197,15 @@ textarea{min-height:80px;resize:vertical}
 <section id="splash">
   <div class="splash-glow"></div>
   <div class="splash-inner">
+    <div class="brand">BARUMCHHARA BLOOD NETWORK</div>
+    <div class="subbrand">(BBN) · EST. 2026</div>
     <img class="logo" id="splashLogo" src="bbn-logo.png" alt="BBN Official Logo"
       onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex'">
     <div class="logo-fallback" id="logoFallback" style="display:none">BBN</div>
-    <div class="brand">BARUMCHHARA<br>BLOOD NETWORK</div>
-    <div class="subbrand">(BBN) · EST. 2026</div>
     <div class="splash-slogan">“আমার রক্ত তোমার তরে,<br>বাঁচুক জীবন নতুন করে।”</div>
     <div class="spinner"></div>
     <div class="loading-text">আপনার জন্য প্রস্তুত হচ্ছে...</div>
-    <div class="credit">BARUMCHHARA BLOOD NETWORK পরিবারে আপনাকে আন্তরিক স্বাগতম।</div>
+    <div class="credit">BARUMCHHARA BLOOD NETWORK<span class="welcome-line">পরিবারে আপনাকে আন্তরিক স্বাগতম।</span></div>
   </div>
 </section>
 
@@ -214,7 +247,8 @@ textarea{min-height:80px;resize:vertical}
         <button class="shortcut soft" onclick="go('guidelines')"><span>♡</span>রক্ত নির্দেশিকা<small>নিয়ম ও সতর্কতা</small></button>
         <button class="shortcut green-soft" onclick="go('history')"><span>▣</span>রক্তদানের ইতিহাস<small>শেষ রক্তদানের তারিখ</small></button>
         <button class="shortcut soft" onclick="go('activities')"><span>✦</span>সংগঠনের কার্যক্রম<small>সংগঠনের আপডেট</small></button>
-        <button class="shortcut green-soft" onclick="go('area')"><span>⌖</span>এলাকা ও যোগাযোগ<small>যোগাযোগের তথ্য</small></button>
+        <button class="shortcut green-soft" onclick="go('learn-donation')"><span>🩸</span>রক্তদান: জানুন, সচেতন হোন<small>রক্তদান সম্পর্কে পড়ুন</small></button>
+        <button class="shortcut blue" onclick="go('blog')"><span>✍️</span>ব্লগ<small>রক্তদানের গল্প ও ছবি শেয়ার করুন</small></button>
       </div>
       <div class="section-head">সাম্প্রতিক রক্তের আবেদন <button onclick="go('feed')">সব দেখুন →</button></div>
       <div id="homeRequests"></div>
@@ -334,6 +368,30 @@ textarea{min-height:80px;resize:vertical}
 
     <section class="page" id="page-activities"><div class="section-head">সংগঠনের কার্যক্রম</div><div class="card"><p class="muted">BARUMCHHARA BLOOD NETWORK-এর কার্যক্রম, ক্যাম্পেইন ও স্বেচ্ছাসেবী উদ্যোগের তথ্য এখানে পরে যোগ করা হবে।</p></div></section>
 
+    <section class="page" id="page-learn-donation">
+      <div class="card donation-article">
+        <div class="donation-cover"><img src="https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1000&q=85" alt="রক্তদান"><div class="cover-title">রক্তদান: জানুন, সচেতন হোন</div></div>
+        <div class="article-brand">BARUMCHHARA BLOOD NETWORK (BBN)</div>
+        <h2>আপনার এক ব্যাগ রক্ত, কারও নতুন জীবনের আশার আলো</h2>
+        <p>রক্তের কোনো কৃত্রিম বিকল্প নেই। দুর্ঘটনা, অস্ত্রোপচার, প্রসবজনিত জটিলতা ও নানা চিকিৎসায় মানুষের রক্তের প্রয়োজন হতে পারে। স্বেচ্ছায় রক্তদান একজন রোগীর চিকিৎসায় গুরুত্বপূর্ণ সহায়তা হতে পারে।</p>
+        <h3>কারা রক্তদান করতে পারেন?</h3><p>সাধারণভাবে সুস্থ প্রাপ্তবয়স্ক ব্যক্তি রক্তদান করতে পারেন। অনেক রক্তকেন্দ্রে ন্যূনতম বয়স ১৮ বছর এবং ওজন অন্তত ৫০ কেজি চাওয়া হয়। রক্তের হিমোগ্লোবিন, স্বাস্থ্যাবস্থা, ওষুধ ও শেষ রক্তদানের পর বিরতিও পরীক্ষা করা হয়। চূড়ান্ত যোগ্যতা রক্তকেন্দ্রের স্বাস্থ্যকর্মী নির্ধারণ করবেন।</p>
+        <h3>কেন রক্তদান করবেন?</h3><p>রক্তদান জরুরি চিকিৎসায় সহায়তা করে, মানুষের পাশে দাঁড়ানোর সুযোগ দেয় এবং সমাজে সহমর্মিতা ও সচেতনতা বাড়ায়। এটি দায়িত্বশীল মানবসেবা—নিজের স্বাস্থ্য ও চিকিৎসকের নির্দেশনাকে সর্বোচ্চ গুরুত্ব দিন।</p>
+        <h3>মানবজীবন রক্ষার ইসলামী শিক্ষা</h3><blockquote>“আর যে কেউ কোনো প্রাণ রক্ষা করল, সে যেন সমগ্র মানবজাতির প্রাণ রক্ষা করল।”<br><small>— সূরা আল-মায়িদাহ, ৫:৩২</small></blockquote>
+        <p>এই আয়াত মানবজীবনের মর্যাদা ও জীবন রক্ষার গুরুত্ব স্মরণ করিয়ে দেয়। নিরাপদ চিকিৎসাব্যবস্থা মেনে স্বেচ্ছায় রক্তদান অসুস্থ মানুষের পাশে দাঁড়ানোর একটি মানবিক উপায় হতে পারে।</p>
+        <div class="article-cta">আমার রক্ত তোমার তরে, বাঁচুক জীবন নতুন করে।<br><strong>BBN — মানবতার টানে, রক্তদানে এগিয়ে আসুন।</strong></div>
+        <div class="notice">বয়স, ওজন ও রক্তদানের বিরতির নিয়ম রক্তকেন্দ্রভেদে ভিন্ন হতে পারে। রক্তদানের আগে অনুমোদিত রক্তকেন্দ্রের স্বাস্থ্যকর্মীর পরামর্শ নিন।</div>
+      </div>
+    </section>
+
+    <section class="page" id="page-blog">
+      <div class="section-head">BBN ব্লগ</div>
+      <div class="card"><h3>আপনার রক্তদানের গল্প শেয়ার করুন</h3><p class="muted">রক্তদানের অভিজ্ঞতা, সচেতনতামূলক লেখা বা ছবি দিয়ে পোস্ট তৈরি করুন।</p>
+        <form id="blogForm"><label for="blogTitle">পোস্টের শিরোনাম</label><input id="blogTitle" maxlength="100" required placeholder="আপনার পোস্টের শিরোনাম লিখুন">
+        <label for="blogText">আপনার লেখা</label><textarea id="blogText" required maxlength="2000" placeholder="রক্তদানের গল্প বা সচেতনতামূলক বার্তা লিখুন..."></textarea>
+        <label for="blogImage">ছবির লিংক (ঐচ্ছিক)</label><input id="blogImage" type="url" placeholder="https://..."><button class="btn" type="submit">✍️ পোস্ট প্রকাশ করুন</button></form></div>
+      <div id="blogPosts"></div><div class="notice">এই সংস্করণে পোস্ট এই ডিভাইসের ব্রাউজারে ডেমো হিসেবে সংরক্ষিত হবে। সবার পোস্ট একসঙ্গে দেখাতে ও নিরাপদে প্রকাশ করতে কেন্দ্রীয় ডেটাবেস এবং অনুমতি ব্যবস্থা প্রয়োজন।</div>
+    </section>
+
     <section class="page" id="page-area">
       <div class="section-head">এলাকা ও যোগাযোগ</div>
       <div class="card"><div class="info-line"><strong>সংগঠন:</strong> BARUMCHHARA BLOOD NETWORK (BBN)</div><div class="info-line"><strong>এলাকা:</strong> বরুমচড়া, আনোয়ারা, চট্টগ্রাম, বাংলাদেশ</div><div class="info-line"><strong>ডেভেলপার:</strong> MOHAMMAD MINHAZ</div><p class="muted">অফিসিয়াল যোগাযোগের তথ্য নিশ্চিত হলে এখানে যোগ করা হবে।</p></div>
@@ -402,6 +460,8 @@ const KEY_MEMBER="bbn_demo_member_v1";
 const KEY_DONORS="bbn_demo_donors_v1";
 const KEY_REQUESTS="bbn_demo_requests_v1";
 const KEY_HISTORY="bbn_demo_history_v1";
+const KEY_BLOG="bbn_demo_blog_v1";
+let blogPosts=read(KEY_BLOG,[]);if(!Array.isArray(blogPosts))blogPosts=[];
 const bloodTypes=["A+","A-","B+","B-","AB+","AB-","O+","O-"];
 let selectedBlood="",member=null,donors=[],requests=[];
 
@@ -417,7 +477,7 @@ function init(){
   setTimeout(()=>{
     document.getElementById("splash").classList.add("hidden");
     document.getElementById("app").classList.remove("hidden");
-    go("home");renderBloodFilters();renderHomeRequests();renderFeed();renderDonors();refreshProfile();renderStats();
+    go("home");renderBloodFilters();renderHomeRequests();renderFeed();renderDonors();refreshProfile();renderStats();renderBlog();
   },2100);
 }
 function go(page){
@@ -427,12 +487,12 @@ function go(page){
   document.querySelectorAll(".nav-item").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
   const titles={home:"BBN",register:"সদস্য নিবন্ধন","donor-register":"রক্তদাতা নিবন্ধন",login:"সদস্য লগইন",
     donors:"রক্তদাতা খুঁজুন",request:"রক্তের আবেদন",feed:"ব্লাড ফিড",profile:"আমার প্রোফাইল",
-    guidelines:"রক্ত নির্দেশিকা",history:"রক্তদানের ইতিহাস",activities:"সংগঠনের কার্যক্রম",
+    guidelines:"রক্ত নির্দেশিকা","learn-donation":"রক্তদান: জানুন, সচেতন হোন",blog:"BBN ব্লগ",history:"রক্তদানের ইতিহাস",activities:"সংগঠনের কার্যক্রম",
     area:"এলাকা ও যোগাযোগ",about:"সংগঠন সম্পর্কে",admin:"অ্যাডমিন পরিচিতি",
     developer:"ডেভেলপার পরিচিতি",social:"সামাজিক যোগাযোগ"};
   document.getElementById("headerTitle").innerHTML=esc(titles[page]||"BBN")+"<small>বারুমচড়া ব্লাড নেটওয়ার্ক</small>";
   closeDrawer();window.scrollTo({top:0,behavior:"smooth"});
-  if(page==="donors")renderDonors();if(page==="feed")renderFeed();if(page==="profile")refreshProfile();
+  if(page==="donors")renderDonors();if(page==="feed")renderFeed();if(page==="blog")renderBlog();if(page==="profile")refreshProfile();
   if(page==="history")loadHistory();
 }
 function openDrawer(){document.getElementById("drawer").classList.remove("hidden")}
@@ -510,6 +570,14 @@ document.getElementById("requestForm").addEventListener("submit",e=>{
   requests.unshift(req);save(KEY_REQUESTS,requests);e.target.reset();renderFeed();renderHomeRequests();renderStats();go("feed");
   alert("আবেদনটি এই ডিভাইসে ডেমো হিসেবে সংরক্ষিত হয়েছে; অনলাইনে প্রকাশিত হয়নি।");
 });
+
+document.getElementById("blogForm").addEventListener("submit",e=>{
+  e.preventDefault();const post={id:Date.now(),title:document.getElementById("blogTitle").value.trim(),text:document.getElementById("blogText").value.trim(),image:document.getElementById("blogImage").value.trim(),date:new Date().toLocaleDateString("bn-BD")};
+  if(!post.title||!post.text){alert("শিরোনাম ও লেখা পূরণ করুন।");return}
+  blogPosts.unshift(post);save(KEY_BLOG,blogPosts);e.target.reset();renderBlog();alert("পোস্টটি এই ডিভাইসে ডেমো হিসেবে সংরক্ষিত হয়েছে; সবার কাছে প্রকাশিত হয়নি।");
+});
+function renderBlog(){const box=document.getElementById("blogPosts");if(!box)return;box.innerHTML=blogPosts.length?blogPosts.map(p=>`<article class="card blog-post">${p.image?`<img src="${esc(p.image)}" alt="পোস্টের ছবি" onerror="this.style.display='none'">`:""}<div class="muted">BBN ব্লগ · ${esc(p.date)}</div><h3>${esc(p.title)}</h3><p>${esc(p.text).replace(/\n/g,"<br>")}</p></article>`).join(""):'<div class="card empty">এখনো কোনো ব্লগ পোস্ট নেই। প্রথম পোস্টটি আপনি তৈরি করতে পারেন।</div>'}
+
 function requestCard(r){
   return `<div class="card"><div style="display:flex;align-items:center;gap:10px"><span class="blood-badge">${esc(r.blood)}</span>
     <strong style="flex:1">${esc(r.patient)}</strong>${r.urgent?'<span class="status" style="color:var(--red)">জরুরি</span>':""}</div>
